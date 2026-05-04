@@ -64,3 +64,40 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+/* FILAMENT RICH EDITOR TEXT COLORS
+  This forces the Tailwind prose class to respect the colors 
+  you choose inside the Filament backend editor.
+*/
+.prose .color {
+    color: var(--color) !important;
+}
+
+/* If you ever enable dark mode, it automatically switches to the dark-mode color variant! */
+.dark .prose .color {
+    color: var(--dark-color, var(--color)) !important;
+}
+
+/* Custom Scrollbar Styles (Embed in your main app.css file) */
+
+/* Target the sidebar containers with the special scrollbar classes we defined in HTML */
+.knowledge-base-scroller::-webkit-scrollbar {
+    width: 6px; /* Ultra slim scrollbar */
+}
+
+/* Hide the scrollbar by making its components transparent initially */
+.knowledge-base-scroller::-webkit-scrollbar-track {
+    background: transparent;
+}
+.knowledge-base-scroller::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 9999px; /* Rounded pill shape */
+}
+
+/* On HOVER of the container, make the scrollbar thumb visible */
+.knowledge-base-scroller:hover::-webkit-scrollbar-thumb {
+    background-color: #e5e7eb; /* Light grey for light mode */
+}
+.dark .knowledge-base-scroller:hover::-webkit-scrollbar-thumb {
+    background-color: #3f3f46; /* Zinc-700 for dark mode */
+}
