@@ -1,0 +1,63 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+/* ==========================================================
+   1. GLOBAL SIDEBAR (Original Background & Custom Shadow)
+   ========================================================== */
+.fi-sidebar {
+    /* Removes the gray border and adds your shadow. 
+       We removed the custom backgrounds so it stays the original color! */
+    border-right: none !important;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+.dark .fi-sidebar {
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ==========================================================
+   2. HIDE SIDEBAR SCROLLBAR (Fixes off-center icons)
+   ========================================================== */
+.fi-sidebar-nav {
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE/Edge */
+}
+
+.fi-sidebar-nav::-webkit-scrollbar {
+    display: none !important; /* Chrome, Safari, Edge */
+}
+
+/* ==========================================================
+   3. TOPBAR SHADOW
+   ========================================================== */
+.fi-topbar {
+    border-bottom: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important; 
+}
+
+.dark .fi-topbar {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important; 
+}
+
+/* ==========================================================
+   4. RICH EDITOR TOOLBAR STICKY FIX
+   ========================================================== */
+.fi-fo-rich-editor-toolbar {
+    position: sticky !important;
+    top: 4rem !important; 
+    z-index: 20 !important;
+    background-color: white !important; 
+    border-bottom: 1px solid #e5e7eb !important; 
+}
+
+.dark .fi-fo-rich-editor-toolbar {
+    background-color: #18181b !important; 
+    border-bottom: 1px solid #27272a !important; 
+}
+
+.fi-fo-rich-editor,
+.fi-fo-field-wrp {
+    overflow: visible !important;
+}
