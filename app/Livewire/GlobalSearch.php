@@ -43,6 +43,7 @@ class GlobalSearch extends Component
             if ($titleMatches || count($matchedHeadings) > 0) {
                 $results[] = [
                     'id' => $doc->id,
+                    'slug' => $doc->slug,
                     'title' => $doc->title,
                     'headings' => $matchedHeadings
                 ];

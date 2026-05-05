@@ -48,7 +48,7 @@
                 >
                     {{-- Document title row --}}
                     <a
-                        href="{{ route('knowledge-base', ['document' => $result['id']]) }}"
+                        href="{{ route('knowledge-base', ['document' => $result['slug']]) }}"
                         @click="Flux.modal('global-search').close()"
                         class="flex items-center gap-2 px-3 py-2.5 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
                     >
@@ -64,7 +64,7 @@
                             @foreach($result['headings'] as $heading)
                                 <li wire:key="heading-{{ $result['id'] }}-{{ $heading['id'] }}">
                                     <a
-                                        href="{{ route('knowledge-base', ['document' => $result['id']]) }}#{{ $heading['id'] }}"
+                                        href="{{ route('knowledge-base', ['document' => $result['slug']]) }}#{{ $heading['id'] }}"
                                         @click="Flux.modal('global-search').close()"
                                         class="flex items-center gap-2 px-3 py-2 text-xs text-zinc-500 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
                                     >

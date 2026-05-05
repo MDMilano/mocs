@@ -11,7 +11,7 @@ use Livewire\Attributes\Url;
 class KnowledgeBase extends Component
 {
     #[Url(as: 'document')]
-    public $documentId = null;
+    public $documentSlug = null;
 
     public ?Document $activeDocument = null;
 
@@ -19,8 +19,8 @@ class KnowledgeBase extends Component
     {
         $docs = $this->fetchDocuments();
 
-        if ($this->documentId) {
-            $this->activeDocument = $docs->firstWhere('id', $this->documentId);
+        if ($this->documentSlug) {
+            $this->activeDocument = $docs->firstWhere('slug', $this->documentSlug);
         }
         
         if (!$this->activeDocument) {
@@ -42,14 +42,14 @@ class KnowledgeBase extends Component
         ]);
     }
 
-    public function selectDocument($documentId)
+    public function selectDocument($slug)
     {
         $docs = $this->fetchDocuments();
-        $document = $docs->firstWhere('id', $documentId);
+        $document = $docs->firstWhere('slug', $slug);
         
         if ($document) {
             $this->activeDocument = $document;
-            $this->documentId = $document->id; 
+            $this->documentSlug = $document->slug; 
             $this->dispatch('documentSelected');
         }
     }

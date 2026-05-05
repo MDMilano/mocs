@@ -30,9 +30,9 @@
                             @foreach($docs as $doc)
                                     <li>
                                         <button type="button"
-                                            wire:click="selectDocument({{ $doc->id }})"
+                                            wire:click="selectDocument('{{ $doc->slug }}')"
                                             class="w-full text-left px-2.5 py-1.5 rounded-md transition-colors text-[12.5px] leading-snug
-                            {{ $activeDocument?->id === $doc->id
+                            {{ $activeDocument?->slug === $doc->slug
                                 ? 'bg-[#0b213f]/10 dark:bg-[#0b213f]/40 text-[#0b213f] dark:text-[#6b9fd4] font-semibold'
                                 : 'text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-zinc-200' }}">
                                             {{ $doc->title }}
@@ -114,10 +114,10 @@
                                     @foreach($docs as $doc)
                                                     <li>
                                                         <button type="button"
-                                                            wire:click="selectDocument({{ $doc->id }})"
+                                                            wire:click="selectDocument('{{ $doc->slug }}')"
                                                             @click="open = false"
                                                             class="w-full text-left px-2.5 py-2 rounded-md transition-colors text-[13px] leading-snug
-                                        {{ $activeDocument?->id === $doc->id
+                                        {{ $activeDocument?->slug === $doc->slug
                                         ? 'bg-[#0b213f]/10 dark:bg-[#0b213f]/40 text-[#0b213f] dark:text-[#6b9fd4] font-semibold'
                                         : 'text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-zinc-200' }}">
                                                             {{ $doc->title }}
