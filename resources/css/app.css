@@ -110,6 +110,47 @@ select:focus[data-flux-control] {
     transition: opacity 0.2s ease;
 }
 
+/* Force images to be inline-block and aligned */
+#rich-content-area img {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    max-width: 100%;
+}
+
+/* Specific styling for small icons detected by JS */
+#rich-content-area .kb-inline-icon {
+    height: 1.5em !important;
+    width: auto !important;
+    margin: 0 0.25rem !important;
+    padding: 0px !important;
+    vertical-align: text-bottom !important;
+    border-radius: 2px !important;
+    position: relative;
+    top: -1px;
+    display: inline-block !important;
+}
+
+.dark #rich-content-area .kb-inline-icon {
+    filter: brightness(0.9);
+}
+
+/* Specific styling for larger screenshots */
+#rich-content-area .kb-screenshot {
+    display: block !important;
+    margin: 2.5rem 0 !important; /* Left aligned */
+    max-height: 80vh;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+.dark #rich-content-area .kb-screenshot {
+    border-color: rgba(255,255,255,0.1) !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
 #rich-content-area h1,
 #rich-content-area h2,
 #rich-content-area h3,
@@ -119,7 +160,7 @@ select:focus[data-flux-control] {
     letter-spacing: -0.025em;
     scroll-margin-top: 6rem;
     line-height: 1.25;
-    margin-top: 3rem;
+    margin-top: 2.5rem;
     margin-bottom: 1rem;
 }
 
@@ -131,8 +172,13 @@ select:focus[data-flux-control] {
 #rich-content-area p {
     color: #374151; /* gray-700 */
     line-height: 1.75;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     font-size: 0.9375rem;
+}
+
+/* Handle paragraphs that might just be wrappers for inline icons */
+#rich-content-area p:has(.kb-inline-icon) {
+    margin-bottom: 0.5rem;
 }
 
 #rich-content-area strong {
@@ -143,8 +189,8 @@ select:focus[data-flux-control] {
 #rich-content-area hr {
     border-color: #f3f4f6;
     border-top-width: 1px;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
 }
 
 #rich-content-area a {

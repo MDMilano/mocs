@@ -164,10 +164,10 @@
             <div id="rich-content-area" class="prose prose-slate max-w-none
                                                     text-gray-900 dark:text-zinc-100
                                                     dark:prose-invert
-                                                    prose-img:inline-block prose-img:m-0 prose-img:align-middle prose-img:rounded-xl prose-img:border prose-img:border-gray-100 dark:prose-img:border-zinc-800 prose-img:shadow-sm
+                                                    prose-img:inline prose-img:m-0 prose-img:align-middle prose-img:rounded-lg prose-img:border prose-img:border-gray-200 dark:prose-img:border-zinc-800 prose-img:shadow-sm
                                                     prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white prose-headings:tracking-tight
                                                     prose-h1:text-4xl prose-h2:text-[32px] prose-h3:text-2xl prose-h4:text-xl
-                                                    prose-p:leading-relaxed prose-p:text-[15px] prose-p:text-gray-900 dark:prose-p:text-zinc-100 prose-p:mb-8
+                                                    prose-p:leading-relaxed prose-p:text-[15px] prose-p:text-gray-900 dark:prose-p:text-zinc-100 prose-p:mb-4
                                                     prose-a:text-[#0b213f] dark:prose-a:text-[#6b9fd4] prose-a:font-medium prose-a:no-underline hover:prose-a:underline
                                                     prose-strong:text-gray-900 dark:prose-strong:text-white prose-strong:font-bold
                                                     prose-ul:list-disc prose-ul:pl-5 prose-ol:list-decimal prose-ol:pl-5
@@ -303,18 +303,34 @@
                 const imgTags = contentArea.querySelectorAll('img');
 
                 imgTags.forEach((img) => {
-                    // 1. FILTER: Skip small images/icons
-                    // We check if it's naturalHeight/Width is small OR if it currently looks like an icon
-                    // Most icons/inline buttons are < 80px. 
+                    // 1. Detect small icons and style them differently
+                    // We increase threshold to 160px and also check if it's within text
+                    const isSmall = (w, h) => (w < 160 && h < 160);
+                    
+                    const applyIconStyles = () => {
+                        const naturalW = img.naturalWidth;
+                        const naturalH = img.naturalHeight;
+                        const parentText = img.parentElement ? img.parentElement.textContent.trim() : '';
+                        
+                        // If it's small OR it's a square-ish image inside a paragraph with other text
+                        if (isSmall(naturalW, naturalH) || (naturalW < 250 && naturalW/naturalH < 1.5 && parentText.length > 0)) {
+                            img.classList.add('kb-inline-icon');
+                            img.style.cursor = 'default';
+                            img.onclick = null;
+                            return true;
+                        }
+                        return false;
+                    };
+
                     if (img.complete) {
-                        if (img.naturalHeight < 80 && img.naturalWidth < 80) return;
+                        if (applyIconStyles()) return;
                     } else {
-                        img.onload = () => { if (img.naturalHeight < 80 && img.naturalWidth < 80) { img.style.cursor = 'default'; img.onclick = null; } };
+                        img.onload = () => { applyIconStyles(); };
                     }
 
-                    // 2. Style and click handler
+                    // 2. Style and click handler for larger images (screenshots)
                     img.style.cursor = 'zoom-in';
-                    img.classList.add('transition-all', 'duration-200', 'hover:brightness-110', 'hover:ring-2', 'hover:ring-amber-500/50', 'active:scale-[0.98]');
+                    img.classList.add('kb-screenshot', 'transition-all', 'duration-200', 'hover:brightness-110', 'hover:ring-2', 'hover:ring-[#0b213f]/30', 'active:scale-[0.98]');
                     
                     img.onclick = () => {
                         this.activeImageSrc = img.src;
