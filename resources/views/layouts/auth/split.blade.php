@@ -3,7 +3,7 @@
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen h-full bg-white antialiased">
+    <body class="min-h-screen h-full bg-white dark:bg-zinc-950 antialiased selection:bg-[#0b213f] selection:text-white">
 
         <div class="min-h-screen flex">
 
@@ -41,7 +41,7 @@
                 </div>
 
                 {{-- Bottom footer copy --}}
-                <div class="relative z-10 text-white/30 text-xs">
+                <div class="relative z-10 text-white/30 text-xs font-medium">
                     &copy; {{ date('Y') }} MOCS. All rights reserved.
                 </div>
             </div>
@@ -49,17 +49,53 @@
             {{-- ====================== --}}
             {{-- RIGHT: Form Panel      --}}
             {{-- ====================== --}}
-            <div class="flex flex-1 flex-col items-center justify-center px-6 py-12 lg:px-16">
+            <div class="flex flex-1 flex-col items-center justify-center px-6 py-12 lg:px-16 
+                        bg-gray-50 dark:bg-zinc-950 relative">
+
+                {{-- Theme Toggle --}}
+                <div class="absolute top-4 right-8 z-20">
+                    <button type="button" 
+                            x-data="{ 
+                                isDark: document.documentElement.classList.contains('dark'),
+                                toggle() {
+                                    this.isDark = !this.isDark;
+                                    if (this.isDark) {
+                                        document.documentElement.classList.add('dark');
+                                        localStorage.setItem('appearance', 'dark');
+                                    } else {
+                                        document.documentElement.classList.remove('dark');
+                                        localStorage.setItem('appearance', 'light');
+                                    }
+                                }
+                            }"
+                            @click="toggle()"
+                            class="p-2.5 rounded-xl bg-white dark:bg-zinc-900 shadow-sm border border-gray-200 dark:border-zinc-800 text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white transition-all">
+                        
+                        {{-- Sun Icon (Visible in dark mode) --}}
+                        <svg x-show="isDark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path>
+                        </svg>
+
+                        {{-- Moon Icon (Visible in light mode) --}}
+                        <svg x-show="!isDark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                </div>
 
                 {{-- Mobile-only logo --}}
-                <div class="lg:hidden mb-8">
+                <div class="lg:hidden mb-12">
                     <a href="{{ route('home') }}" wire:navigate>
-                        <img src="{{ asset('mocsblue.png') }}" alt="MOCS" class="h-10" />
+                        <img src="{{ asset('mocsblue.png') }}" alt="MOCS" class="h-12 dark:hidden" />
+                        <img src="{{ asset('mocswhite.png') }}" alt="MOCS" class="h-12 hidden dark:block" />
                     </a>
                 </div>
 
-                <div class="w-full max-w-sm">
-                    {{ $slot }}
+                <div class="w-full max-w-md">
+                    {{-- Form Container with subtle card effect in light mode --}}
+                    <div class="bg-white dark:bg-zinc-900/50 p-8 sm:p-10 rounded-2xl shadow-xl lg:shadow-none border border-gray-100 dark:border-zinc-800 lg:border-none lg:bg-transparent dark:lg:bg-transparent">
+                        {{ $slot }}
+                    </div>
                 </div>
 
             </div>
