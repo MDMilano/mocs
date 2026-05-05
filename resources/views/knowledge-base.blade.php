@@ -289,6 +289,9 @@
                    this.$nextTick(() => {
                        this.setupImages();
                        this.setupScrollSpy();
+                       
+                       // Scroll back to top
+                       window.scrollTo({ top: 0, behavior: 'smooth' });
                    });
                 });
             },
