@@ -8,8 +8,8 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
-    Route::get('/knowledge-base', KnowledgeBase::class)->name('knowledge-base');
+
+    Route::get('knowledge-base', KnowledgeBase::class)->name('knowledge-base');
 });
 
 require __DIR__ . '/settings.php';
