@@ -19,10 +19,10 @@
                 {{ __('Dashboard') }}
             </flux:navbar.item> --}}
 
-            <flux:navbar.item icon="book-open-text" :href="route('knowledge-base')"
+            {{-- <flux:navbar.item icon="book-open-text" :href="route('knowledge-base')"
                 :current="request()->routeIs('knowledge-base')" wire:navigate>
                 {{ __('Knowledge Base')  }}
-            </flux:navbar.item>
+            </flux:navbar.item> --}}
         </flux:navbar>
 
         <flux:spacer />
