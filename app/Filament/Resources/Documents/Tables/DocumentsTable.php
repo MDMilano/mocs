@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Documents\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Tables\Table;
 
 class DocumentsTable
@@ -35,6 +36,7 @@ class DocumentsTable
             ])
             ->recordActions([
                 EditAction::make(),
+                ViewAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

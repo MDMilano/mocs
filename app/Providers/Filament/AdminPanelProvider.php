@@ -3,7 +3,9 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Auth\Pages\CustomLogin;
+use App\Models\User;
 use AzGasim\FilamentUnsavedChangesModal\FilamentUnsavedChangesModalPlugin;
+use DutchCodingCompany\FilamentDeveloperLogins\FilamentDeveloperLoginsPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -47,8 +49,12 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogoHeight('55px')
             ->plugins([
                 FilamentUnsavedChangesModalPlugin::make()
-                    ->modalWidth('lg'),       
-            ])
+                    ->modalWidth('lg'),
+                FilamentDeveloperLoginsPlugin::make()
+                    ->enabled(app()->environment('local'))
+                    ->switchable(false)
+                    ->users(fn() => User::pluck('email', 'name')->toArray()),
+            ])  
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

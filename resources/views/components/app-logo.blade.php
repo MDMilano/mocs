@@ -3,15 +3,13 @@
 ])
 
 @if($sidebar)
-    <flux:sidebar.brand name="Laravel Starter Kit" {{ $attributes }}>
-        <x-slot name="logo" class="flex aspect-square size-8 items-center justify-center rounded-md bg-accent-content text-accent-foreground">
-            <x-app-logo-icon class="size-5 fill-current text-white dark:text-black" />
-        </x-slot>
+    <flux:sidebar.brand {{ $attributes }}>
+        <img src="{{ asset('mocsblue.png') }}" class="h-8 dark:hidden" alt="MOCS" />
+        <img src="{{ asset('mocswhite.png') }}" class="h-8 hidden dark:block" alt="MOCS" />
     </flux:sidebar.brand>
 @else
-    <flux:brand name="Laravel Starter Kit" {{ $attributes }}>
-        <x-slot name="logo" class="flex aspect-square size-8 items-center justify-center rounded-md bg-accent-content text-accent-foreground">
-            <x-app-logo-icon class="size-5 fill-current text-white dark:text-black" />
-        </x-slot>
+    <flux:brand {{ $attributes }}>
+        <img src="{{ asset('mocsblue.png') }}" class="h-8 dark:hidden" alt="MOCS" />
+        <img src="{{ asset('mocswhite.png') }}" class="h-8 hidden dark:block" alt="MOCS" />
     </flux:brand>
 @endif
