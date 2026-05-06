@@ -6,6 +6,7 @@ use App\Filament\Auth\Pages\CustomLogin;
 use App\Models\User;
 use AzGasim\FilamentUnsavedChangesModal\FilamentUnsavedChangesModalPlugin;
 use DutchCodingCompany\FilamentDeveloperLogins\FilamentDeveloperLoginsPlugin;
+use Filament\Actions\Action;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -34,6 +35,13 @@ class AdminPanelProvider extends PanelProvider
             ->login(CustomLogin::class)
             ->colors([
                 'primary' => Color::Blue,
+            ])
+            ->userMenuItems([
+                Action::make('go-to-knowledge-base')
+                    ->label('Go to Knowledge Base')
+                    ->icon('heroicon-o-book-open')
+                    ->url(fn(): string => route('knowledge-base'))
+                    ->visible(fn(): bool => !auth()->user()?->must_change_password),
             ])
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->font('Poppins')
