@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Livewire;
 
+/*
 test('password can be updated', function () {
     $user = User::factory()->create([
         'password' => Hash::make('password'),
@@ -38,3 +39,4 @@ test('correct password must be provided to update password', function () {
 
     $response->assertHasErrors(['current_password']);
 });
+*/

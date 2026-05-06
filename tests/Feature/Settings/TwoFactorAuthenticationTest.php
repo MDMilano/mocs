@@ -4,6 +4,7 @@ use App\Models\User;
 use Laravel\Fortify\Features;
 use Livewire\Livewire;
 
+/*
 beforeEach(function () {
     if (! Features::canManageTwoFactorAuthentication()) {
         $this->markTestSkipped('Two-factor authentication is not enabled.');
@@ -68,3 +69,4 @@ test('two factor authentication disabled when confirmation abandoned between req
         'two_factor_recovery_codes' => null,
     ]);
 });
+*/

@@ -1,4 +1,4 @@
 *
 !.gitignore
-!knowledge-base-images/
-!knowledge-base-images/*
+# !knowledge-base-images/
+# !knowledge-base-images/*

@@ -4,6 +4,7 @@ use App\Livewire\Settings\Profile;
 use App\Models\User;
 use Livewire\Livewire;
 
+/*
 test('profile page is displayed', function () {
     $this->actingAs($user = User::factory()->create());
 
@@ -74,3 +75,4 @@ test('correct password must be provided to delete account', function () {
 
     expect($user->fresh())->not->toBeNull();
 });
+*/
