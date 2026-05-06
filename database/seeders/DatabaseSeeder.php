@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
 
         // Create default admin account
         $admin = User::factory()->create([
-            'name' => 'Admin User',
-            'email' => 'admin@mocs.test',
+            'name' => 'Admin',
+            'email' => 'jatrostratabpo054@gmail.com',
             'is_active' => true,
             'must_change_password' => false,
             'password' => Hash::make('password'), // Set a default password
@@ -30,13 +30,13 @@ class DatabaseSeeder extends Seeder
         $admin->assignRole('admin');
 
         // Create default user account
-        $user = User::factory()->create([
-            'name' => 'Regular User',
-            'email' => 'user@mocs.test',
-            'is_active' => true,
-            'must_change_password' => false,
-            'password' => Hash::make('password'), // Set a default password
-        ]);
-        $user->assignRole('user');
+        // $user = User::factory()->create([
+        //     'name' => 'Regular User',
+        //     'email' => 'user@mocs.test',
+        //     'is_active' => true,
+        //     'must_change_password' => false,
+        //     'password' => Hash::make('password'), // Set a default password
+        // ]);
+        // $user->assignRole('user');
     }
 }
