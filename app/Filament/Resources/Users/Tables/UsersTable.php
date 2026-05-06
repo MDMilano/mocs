@@ -18,8 +18,7 @@ class UsersTable
     {
         return $table
             ->modifyQueryUsing(fn(Builder $query) =>
-                $query
-                    ->where('id', '!=', auth()->id()))
+                $query->withoutRole('admin'))
             ->defaultSort('updated_at', 'desc')
             ->columns([
                 ImageColumn::make('avatar_url')

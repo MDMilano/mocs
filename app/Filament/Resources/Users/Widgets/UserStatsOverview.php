@@ -12,11 +12,11 @@ class UserStatsOverview extends StatsOverviewWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Total Users', User::count())
+            Stat::make('Total Users', User::withoutRole('admin')->count())
                 ->icon('heroicon-o-user-group'),
             Stat::make('User Roles', User::role('user')->count())
                 ->icon('heroicon-o-user'),
-            Stat::make('Active Users', User::where('is_active', true)->count())
+            Stat::make('Active Users', User::withoutRole('admin')->where('is_active', true)->count())
                 ->icon('heroicon-o-user'),
         ];
     }
